@@ -1,0 +1,58 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>oauth2-example-登入</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link th:href="@{/libs/bootstrap/dist/css/bootstrap.min.css}" rel="stylesheet">
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+
+        body {
+            padding-top: 80px;
+        }
+
+        .form-login {
+            max-width: 330px;
+            margin: 0 auto;
+        }
+
+        .form-login .form-control {
+            font-size: 18px;
+        }
+    </style>
+    <script th:src="@{/libs/jquery/dist/jquery.min.js}"></script>
+    <script th:src="@{/libs/bootstrap/dist/js/bootstrap.min.js}"></script>
+    <script th:src="@{/libs/vue/dist/vue.min.js}"></script>
+    <script th:src="@{/js/login.js}"></script>
+    <script th:inline="javascript">
+        $(function () {
+            window.app = new App(/*[[${authUrl}]]*/'', /*[[${clientId}]]*/'', /*[[${redirectUri}]]*/'').init();
+        });
+    </script>
+</head>
+
+<body>
+    <div v-cloak id="app" class="container">
+        <form th:action="@{/login}" method="post" class="form-login">
+            <div th:if="${param.error}" class="alert alert-danger">
+                帳號或密碼錯誤，請重新輸入
+            </div>
+            <div th:if="${param.logout}" class="alert alert-success">
+                你已經登出
+            </div>
+            <h1>歡迎使用</h1>
+            <div class="form-group">
+                <input type="text" class="form-control" name="username" placeholder="使用者名稱" required autofocus>
+                <input type="password" class="form-control" name="password" placeholder="密碼" required>
+            </div>
+            <button @click="lineLogin" class="btn btn-lg btn-success btn-block" type="button">Line 登入</button>
+        </form>
+    </div>
+</body>
+
+</html>

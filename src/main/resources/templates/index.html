@@ -1,0 +1,46 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>oauth2-example-首頁</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link th:href="@{/libs/bootstrap/dist/css/bootstrap.min.css}" rel="stylesheet">
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+
+        body {
+            padding-top: 80px;
+        }
+    </style>
+    <script th:src="@{/libs/jquery/dist/jquery.min.js}"></script>
+    <script th:src="@{/libs/bootstrap/dist/js/bootstrap.min.js}"></script>
+    <script th:src="@{/libs/vue/dist/vue.min.js}"></script>
+    <script th:src="@{/libs/vue-resource/dist/vue-resource.min.js}"></script>
+    <script th:src="@{/js/index.js}"></script>
+    <script th:inline="javascript">
+        $(function () {
+            window.app = new App(/*[[${authUrl}]]*/'', /*[[${clientId}]]*/'', /*[[${redirectUri}]]*/'').init();
+        });
+    </script>
+</head>
+
+<body>
+    <div v-cloak id="app" class="container">
+        <h1 th:text="Hi + ', ' + ${userName}"></h1>
+        <form class="form-inline">
+            <button @click="lineNotify" class="btn btn-info" type="button">訂閱通知</button>
+            <span th:if="${isSubscribed}">
+                已訂閱
+            </span>
+            <input v-model="message" type="text" class="form-control">
+            <button @click="sendNotify" class="btn btn-primary" type="button">發送</button>
+            <span>{{ notifyStatus }}</span>
+        </form>
+    </div>
+</body>
+
+</html>

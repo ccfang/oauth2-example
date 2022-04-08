@@ -1,0 +1,19 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>oauth2-example-ok</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+
+<body>
+    <script th:inline="javascript">
+        if (window.opener) {
+            window.opener.postMessage('ok', '*');
+        }
+    </script>
+</body>
+
+</html>

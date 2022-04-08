@@ -1,0 +1,33 @@
+spring:
+  datasource:
+    url: jdbc:h2:./db/oauth2
+    username: sa
+    password:
+  h2:
+    console:
+      enabled: true
+      settings:
+        web-allow-others: true
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+server:
+  servlet:
+    session:
+      tracking-modes:
+      - cookie
+
+line:
+  auth-url: "${LINE_AUTH_URL:}"
+  token-url: "${LINE_TOKEN_URL:}"
+  client-id: "${LINE_CLIENT_ID:}"
+  client-secret: "${LINE_CLIENT_SECRET:}"
+  redirect-uri: "${LINE_REDIRECT_URI:}"
+
+line-notify:
+  auth-url: "${LINE_NOTIFY_AUTH_URL:}"
+  token-url: "${LINE_NOTIFY_TOKEN_URL:}"
+  client-id: "${LINE_NOTIFY_CLIENT_ID:}"
+  client-secret: "${LINE_NOTIFY_CLIENT_SECRET:}"
+  redirect-uri: "${LINE_NOTIFY_REDIRECT_URI:}"
